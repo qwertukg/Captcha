@@ -1,9 +1,9 @@
 # Captcha
-Simple configurated captcha bundle for Laravel 3
+Simple and flexible captcha bundle for Laravel 3
 
 Instalation
 -----------
-This bundle usage **Interevetion Image v.1.x** library.
+This bundle is using [**Intervention Image v1**](http://image-v1.intervention.io/) library.
 Require it via Composer like this:
 
     "require" : {
