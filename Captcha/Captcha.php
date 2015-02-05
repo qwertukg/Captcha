@@ -69,52 +69,52 @@ class Captcha {
 		{
 			$symbol = $this->random('symbol');
 
-			$font = Bundle::path('captcha').'fonts'.DS.$this->random('fonts');
+			$file = Bundle::path('captcha').'fonts'.DS.$this->random('fonts');
 
-			$fontSize = $this->random('fontSize');
+			$size = $this->random('fontSize');
 
-			$fontColor = $this->random('fontColors');
+			$color = $this->random('fontColors');
 
 			$angle = $this->random('angle');
 
-			$xFrom = round(($i * $this->blockWidth) + ($fontSize / 2));
+			$xFrom = round(($i * $this->blockWidth) + ($size / 2));
 
-			$xTo = round(($i * $this->blockWidth) - ($fontSize / 2) + $this->blockWidth);
+			$xTo = round(($i * $this->blockWidth) - ($size / 2) + $this->blockWidth);
 
 			$x = rand($xFrom, $xTo);
 
-			$yFrom = round($fontSize / 2);
+			$yFrom = round($size / 2);
 
-			$yTo = round($this->height - ($fontSize / 2));
+			$yTo = round($this->height - ($size / 2));
 
 			$y = rand($yFrom, $yTo);
 
-			$image->text($symbol, $x, $y, function($text) use ($font, $fontSize, $fontColor, $angle) 
+			$image->text($symbol, $x, $y, function($font) use ($file, $size, $color, $angle) 
 			{
-			    $text->file($font);
+			    $font->file($file);
 
-			    $text->size($fontSize);
+			    $font->size($size);
 
-			    $text->color($fontColor);
+			    $font->color($color);
 
-			    $text->angle($angle);
+			    $font->angle($angle);
 
-			    $text->align('center');
+			    $font->align('center');
 
-			    $text->valign('center');
+			    $font->valign('center');
 			});
 
 			$this->value .= $symbol;
 		}
 
-		Session::put('captcha', md5($this->value));
+		Session::put('captcha', md5(Str::lower($this->value)));
 
 		return $image->encode('png');
 	}
 
 	public function check($value)
 	{
-		if (Session::get('captcha') == md5($value))
+		if (Session::get('captcha') == md5(Str::lower($value)))
 		{
 			return true;
 		}
