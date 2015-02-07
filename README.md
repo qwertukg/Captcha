@@ -33,6 +33,6 @@ Check  requested captcha on backend like this:
 Configuration
 -------------
 
-See [options](https://github.com/qwertukg/Captcha/blob/master/Captcha/config/options.php) :)
+See [options](https://github.com/qwertukg/сaptcha/blob/master/Captcha/config/options.php) :)
 
 **Good luck!**
